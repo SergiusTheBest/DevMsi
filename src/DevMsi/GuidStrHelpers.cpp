@@ -35,7 +35,7 @@ GUID Str2GUID( __in const std::wstring&  source )
 
 GUID ClassName2GUID( __in const std::wstring& ClassName ) {
 
-    GUID ClassGUID;
+    GUID ClassGUID = GUID_NULL;
     HRESULT hr = E_FAIL;
 
     if ( ClassName.empty() ) {
