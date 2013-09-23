@@ -11,7 +11,6 @@ int _tmain(int argc, _TCHAR* argv[])
     if ( argc < 2 ) {
         return result;
     }
-    LPCTSTR appName = argv[0];
     LPCTSTR opName  = argv[1];
     argc -=2;
     argv +=2;

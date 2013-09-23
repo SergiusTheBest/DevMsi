@@ -21,7 +21,7 @@
  */
 void LogError( DWORD dwErrorMsgId )
 {
-    HLOCAL pBuffer;   // Buffer to hold the textual error description.
+    HLOCAL pBuffer = nullptr;   // Buffer to hold the textual error description.
     DWORD ret = 0;    // Temp space to hold a return value.
     HINSTANCE hInst = NULL;  // Instance handle for DLL.
     BOOL doLookup = TRUE;

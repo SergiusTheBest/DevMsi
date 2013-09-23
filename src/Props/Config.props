@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)' == 'Debug' ">
+    <Import Project="$(SolutionDir)Props\Debug.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)' == 'Release' ">
+    <Import Project="$(SolutionDir)Props\Release.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Platform)' == 'Win32' OR '$(Platform)' == 'x86'">
+    <Import Project="$(SolutionDir)Props\Win32.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Platform)' == 'x64' ">
+    <Import Project="$(SolutionDir)Props\x64.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <BaseDir>$(SolutionDir)..\</BaseDir>
+    <DirTag>$(Platform)\$(Configuration)</DirTag>
+    <DirTag Condition="'$(Platform)' == 'x86'">Win32\$(Configuration)</DirTag>
+    <LibPath>$(BaseDir)lib\$(DirTag)</LibPath>
+    <BinPath>$(BaseDir)bin\$(DirTag)</BinPath>
+    <ObjPath>$(BaseDir)obj\$(DirTag)\$(ProjectName)\</ObjPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(BinPath)\</OutDir>
+    <IntDir>$(ObjPath)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(ConfigurationType)'=='StaticLibrary'">
+    <OutDir>$(LibPath)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>     
+      <StringPooling>true</StringPooling>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PreprocessorDefinitions>_WINDOWS;$(VERSION_DEFINITIONS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <RegisterOutput>false</RegisterOutput>
+      <AdditionalLibraryDirectories>$(LibPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(LibPath)\$(TargetName).lib</ImportLibrary>
+      <MinimumRequiredVersion>5.1</MinimumRequiredVersion>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(LibPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <OutputDirectory>$(LibPath)</OutputDirectory>
+      <HeaderFileName>%(Filename)_i.h</HeaderFileName>
+      <DllDataFileName>%(Filename)_dlldata.c</DllDataFileName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+      <TypeLibraryName>%(FileName).tlb</TypeLibraryName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="DirTag">
+      <Value>$(DirTag)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LibPath">
+      <Value>$(LibPath)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BinPath">
+      <Value>$(BinPath)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ObjPath">
+      <Value>$(ObjPath)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BaseDir">
+      <Value>$(BaseDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

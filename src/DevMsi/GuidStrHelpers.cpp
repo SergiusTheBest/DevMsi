@@ -52,7 +52,6 @@ GUID ClassName2GUID( __in const std::wstring& ClassName ) {
         throw hr;
     }
 
-    BOOL found = FALSE;
     wchar_t buffer[MAX_PATH];
     DWORD bufferSize = 0;
     for ( DWORD i = 0; FAILED(hr); ++i ) {
