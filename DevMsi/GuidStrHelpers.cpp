@@ -27,7 +27,7 @@ GUID Str2GUID( __in const std::wstring&  source )
     static_assert( sizeof( GUID ) == sizeof( CLSID ), "GUID is not the samesize as a CLSID" );
     HRESULT hr = CLSIDFromString(source.c_str(), (LPCLSID)&dest);
     if ( FAILED( hr ) ) {
-        LogResult(hr, "CLSIDFromString(%ls) Failed.", source );
+        LogResult(hr, "CLSIDFromString(%ls) Failed.", source.c_str());
         throw hr;
     }
     return dest;
