@@ -1,0 +1,8 @@
+/obj
+/lib
+/bin
+/src/ipch
+
+/src/*.sdf
+
+/src/*.suo
