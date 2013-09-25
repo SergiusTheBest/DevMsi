@@ -44,7 +44,6 @@
       <AdditionalLibraryDirectories>$(LibPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(LibPath)\$(TargetName).lib</ImportLibrary>
-      <MinimumRequiredVersion>5.1</MinimumRequiredVersion>
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(LibPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
